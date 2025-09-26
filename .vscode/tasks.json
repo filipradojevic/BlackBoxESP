@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build ESP32 Project",
+            "label": "Build ESP32 Project", //F7 COMMAND
             "type": "shell",
             "command": "C:\\Espressif\\frameworks\\esp-idf-v5.3\\export.bat",
             "args": [
@@ -28,7 +28,7 @@
             }
         },
         {
-            "label": "Flash ESP32 Project",
+            "label": "Flash ESP32 Project", //F5 COMMAND
             "type": "shell",
             "command": "C:\\Espressif\\frameworks\\esp-idf-v5.3\\export.bat",
             "args": [
@@ -52,6 +52,35 @@
                 "focus": false,
                 "panel": "shared"
             }
-        }
+        },
+        {
+            "label": "Full Clean + Build ESP32 Project", //F3 COMMAND
+            "type": "shell",
+            "command": "C:\\Espressif\\frameworks\\esp-idf-v5.3\\export.bat",
+            "args": [
+                "&&",
+                "idf.py",
+                "fullclean",
+                "&&",
+                "idf.py",
+                "build"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
     ]
 }

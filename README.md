@@ -110,6 +110,21 @@ deactivate
 Virtual environment is not needed to be activated again, and will be called by
 CMake during the build stage.
 
+To BUILD this project now press:
+```
+F7
+```
+
+To CLEAN-REBUILD press:
+```
+F3
+```
+
+To FLASH the program press:
+```
+F5
+```
+
 ## Tool Configuration
 
 In order to compile project it is needed to configure needed tools, instructions

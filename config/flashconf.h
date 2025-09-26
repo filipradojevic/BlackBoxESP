@@ -1,0 +1,6 @@
+#ifndef FLASHCONF_H
+#define FLASHCONF_H
+
+#define FLASH_USE_GD5F2GQ5UE 1
+
+#endif	/* FLASHCONF_H */
