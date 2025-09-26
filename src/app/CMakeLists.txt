@@ -17,6 +17,7 @@ idf_component_register(
         esp_timer
         ftp
         lfs_utilities
+        eth
 
     INCLUDE_DIRS 
         "."

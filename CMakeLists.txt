@@ -14,6 +14,7 @@ set(EXTRA_COMPONENT_DIRS
 add_compile_options(
     -Wno-dev
     -Wno-unused-function
+    -Wno-unused-variable
     -Wno-type-limits 
     -Wno-address-of-packed-member
     -Wno-cast-align

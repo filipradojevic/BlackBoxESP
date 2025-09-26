@@ -35,6 +35,7 @@
 #include "esp_timer.h"
 
 /* External hardware drivers */
+#include "eth.h"
 #include "flash.h"
 #include "flash_common.h"
 #include "sd.h"
@@ -103,7 +104,8 @@ const uint16_t ins_port = 1003;
 const uint16_t ins_local_port = 1003;
 
 /* Transport layers */
-// eth_hal_phy_t eth_phy;
+eth_hal_phy_t eth_phy;
+esp_eth_handle_t eth_handle = NULL;
 udp_tl_t mav_gw_sky_tl;
 udp_tl_t mav_ins_tl;
 
@@ -163,7 +165,6 @@ uint64_t boot_time_ms = 0;
  ******************************************************************************/
 
 static void timer_blinky_cb(TimerHandle_t xTimer);
-
 
 /*******************************************************************************
  * Code
@@ -320,11 +321,11 @@ void app_main(void)
 
 #endif
 
-	// HAL_ETH_Init(&eth_phy, dev_mac);
+	HAL_ETH_Init(&eth_phy, dev_mac, eth_handle);
 
 	/*--------------------------------- UDP ----------------------------------*/
 	/* initialize UDP */
-	// udp_init(&udp, dev_mac, dev_ip, (udp_phy_t*)&eth_phy);
+	udp_init(&udp, dev_mac, dev_ip, (udp_phy_t*)&eth_phy);
 
 	/* add client MAC & IP to static ARP table */
 	udp_arptab_add(&udp, gw_sky_mac, gw_sky_ip);
