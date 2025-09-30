@@ -99,3 +99,9 @@ include_directories("${GEN_INCLUDE_DIR}")
 
 
 project(BlackBoxESP)
+
+if(CONFIG_COMPILER_OPTIMIZATION_DEBUG)
+    # ukloni sve prethodne optimizacije
+    set(CMAKE_C_FLAGS_DEBUG "-O0 -g3")
+    set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
+endif()

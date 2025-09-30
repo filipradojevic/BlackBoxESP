@@ -142,7 +142,7 @@ SemaphoreHandle_t mutex_mav_ftp;
 SemaphoreHandle_t semaphore_logging_ready;
 
 /* Tasks Handles */
-TaskHandle_t task_work_handle = NULL;
+TaskHandle_t task_work_handle;
 TaskHandle_t task_log_global;
 
 #if FLASH_OR_SD_LITTLEFS
