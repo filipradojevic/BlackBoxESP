@@ -21,9 +21,11 @@ typedef struct eth_hal_phy_t {
 	void* priv; /* { changed code } storage for adapter/context */
 } eth_hal_phy_t;
 
-/*! @brief Initialize Ethernet HAL */
-void HAL_ETH_Init(eth_hal_phy_t* eth, const uint8_t* mac,
-				  esp_eth_handle_t eth_handle);
+/*! @brief Initialize Ethernet HAL
+ *
+ * @param[out] eth_handle Optional out pointer receiving the esp_eth_handle_t created/used by HAL.
+ */
+void HAL_ETH_Init(eth_hal_phy_t* eth, const uint8_t* mac, esp_eth_handle_t* eth_handle);
 
 /*! @brief Send a packet over Ethernet */
 uint16_t HAL_ETH_Send(void* phy, const uint8_t* data, uint16_t size);

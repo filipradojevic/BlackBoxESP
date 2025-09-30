@@ -381,8 +381,7 @@ static void mav_gw_sky_recv_cb(mav_t* mav, mavlink_message_t* msg, void* arg)
 
 	case MAVLINK_MSG_ID_HEARTBEAT: {
 
-		// HAL_GPIO_SetPinValue(GPIO_HAL_INSTANCE_3, 25,
-		// 					 !HAL_GPIO_GetPinValue(GPIO_HAL_INSTANCE_3, 25));
+		gpio_set_level((gpio_num_t)26, !gpio_get_level((gpio_num_t)26));
 
 		break;
 	}

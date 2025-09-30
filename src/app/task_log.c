@@ -422,8 +422,7 @@ void task_log(void* arg)
 	log_t0 = xTaskGetTickCount();
 
 	/* Initialization is done successfully */
-	// HAL_GPIO_SetPinValue(GPIO_HAL_INSTANCE_3, 26,
-	// 					 !HAL_GPIO_GetPinValue(GPIO_HAL_INSTANCE_3, 26));
+	gpio_set_level((gpio_num_t)26, !gpio_get_level((gpio_num_t)26));
 
 	xTaskNotifyGive(task_work_handle);
 
@@ -585,9 +584,7 @@ void task_log(void* arg)
 
 			ulog_sync(&ulog);
 
-			// HAL_GPIO_SetPinValue(
-			// 	GPIO_HAL_INSTANCE_3, 25,
-			// 	!HAL_GPIO_GetPinValue(GPIO_HAL_INSTANCE_3, 25));
+			gpio_set_level((gpio_num_t)26, !gpio_get_level((gpio_num_t)26));
 		}
 	}
 }

@@ -2,8 +2,7 @@
 
 typedef struct {
 	esp_eth_handle_t eth_handle;
-	QueueHandle_t
-		rx_queue; // queue of pointers/blocks pushed by driver's RX callback
+	QueueHandle_t rx_queue; // queue of pointers/blocks pushed by driver's RX callback
 } eth_phy_adapter_t;
 
 typedef struct {
@@ -14,8 +13,7 @@ typedef struct {
 static eth_phy_adapter_t adapter;
 
 /* Called from driver RX path */
-static esp_err_t eth_rx_cb(esp_eth_handle_t h, uint8_t* buf, uint32_t len,
-						   void* priv)
+static esp_err_t eth_rx_cb(esp_eth_handle_t h, uint8_t* buf, uint32_t len, void* priv)
 {
 	eth_phy_adapter_t* a = (eth_phy_adapter_t*)priv;
 
@@ -60,9 +58,11 @@ uint16_t HAL_ETH_Recv(void* phy, uint8_t* data, uint16_t size)
 	return 0;
 }
 
-/* init: */
-void HAL_ETH_Init(eth_hal_phy_t* eth, const uint8_t* mac,
-				  esp_eth_handle_t eth_handle)
+/*! @brief Initialize Ethernet HAL
+ *
+ * @param[out] eth_handle Optional out pointer receiving the esp_eth_handle_t created/used by HAL.
+ */
+void HAL_ETH_Init(eth_hal_phy_t* eth, const uint8_t* mac, esp_eth_handle_t* eth_handle)
 {
 	static eth_phy_adapter_t adapter;
 

@@ -2,8 +2,15 @@
 
 **Documentation**
 
-Detailed documentation about the MAVLink FTP implementation can be found here:
+Link of site of our Dev Board:
 
+[ESP32-S3 Ethernet (Waveshare)](https://www.waveshare.com/wiki/ESP32-S3-ETH)
+
+[ESP32-S3 Ethernet (Malina314)](https://malina314.com/proizvod/esp32-s3-eth-development-board-10-100mbps-rj45-ethernet-port-wi-fi-bluetooth-support-240mhz-dual-core-processor-esp32-ethernet-development-board/)
+
+
+
+Detailed documentation about the MAVLink FTP implementation can be found here:
 
 📄 [View FTP Documentation (PDF)](docs/FileTransferProtocol_Mavlink.pdf)
 
@@ -110,10 +117,11 @@ deactivate
 Virtual environment is not needed to be activated again, and will be called by
 CMake during the build stage.
 
-To BUILD this project now press:
+To run MENUCONFIG press:
 ```
-F7
+F1
 ```
+Press J to go ↓, K is to go ↑ in menuconfig. Also Enter is to selecet something and Backspace is to go back.
 
 To CLEAN-REBUILD press:
 ```
@@ -124,6 +132,13 @@ To FLASH the program press:
 ```
 F5
 ```
+
+To BUILD this project now press:
+```
+F7
+```
+
+
 
 ## Tool Configuration
 

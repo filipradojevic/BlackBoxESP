@@ -2,14 +2,29 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "gdbtarget",
-      "request": "attach",
-      "name": "Eclipse CDT GDB Adapter"
-    },
-    {
-      "type": "espidf",
-      "name": "Launch",
-      "request": "launch"
+      "preLaunchTask": "OpenOCD ESP32-S3",
+      "name": "Debug ESP32-S3",
+      "type": "cppdbg",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/build",
+      "program": "${workspaceFolder}/build/BlackBoxESP.elf",
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:/Espressif/tools/xtensa-esp-elf-gdb/14.2_20240403/xtensa-esp-elf-gdb/bin/xtensa-esp32s3-elf-gdb.exe",
+      "miDebuggerServerAddress": "localhost:3333",
+      "stopAtEntry": false,
+      "setupCommands": [
+        {
+          "text": "set remotetimeout 2"
+        },
+        {
+          "text": "break app_main"
+        }
+      ],
+      "logging": {
+        "engineLogging": true,
+        "trace": true,
+        "traceResponse": true
+      }
     }
   ]
 }

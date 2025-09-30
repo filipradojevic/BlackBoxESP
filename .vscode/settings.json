@@ -55,7 +55,8 @@
     "lfs.h": "c",
     "esp_compiler.h": "c",
     "ulog_def.h": "c",
-    "stdint.h": "c"
+    "stdint.h": "c",
+    "task_work.h": "c"
   },
   "editor.tokenColorCustomizations": {
     "textMateRules": [
@@ -69,4 +70,5 @@
   },
   "C_Cpp.errorSquiggles": "enabled",
   "C_Cpp.default.compilerPath": "C:/Espressif/tools/xtensa-esp-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc.exe",
+  "idf.portWin": "COM19",
 }
