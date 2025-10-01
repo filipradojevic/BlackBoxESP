@@ -1,0 +1,84 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.espIdfPathWin": "C:/Espressif/frameworks/esp-idf-v5.3/",
+  "idf.pythonInstallPath": "C://Espressif//tools//idf-python//3.11.2//python.exe",
+  "idf.openOcdConfigs": [
+    "interface/ftdi/esp32_devkitj_v1.cfg",
+    "target/esp32s3.cfg"
+  ],
+  "idf.toolsPathWin": "C://Espressif",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32s3"
+  },
+  "files.associations": {
+    "freertos.h": "c",
+    "common.h": "c",
+    "util.h": "c",
+    "cstdint": "c",
+    "esp_attr.h": "c",
+    "compare": "c",
+    "format": "c",
+    "bitset": "c",
+    "string_view": "c",
+    "regex": "c",
+    "spi_master.h": "c",
+    "string.h": "c",
+    "esp_log.h": "c",
+    "gpio.h": "c",
+    "queue.h": "c",
+    "freertosconfig_arch.h": "c",
+    "freertosconfig.h": "c",
+    "flash.h": "c",
+    "task.h": "c",
+    "udp.h": "c",
+    "ulog.h": "c",
+    "ulog_attitude.h": "c",
+    "sd.h": "c",
+    "unistd.h": "c",
+    "task_log.h": "c",
+    "esp_eth_mac.h": "c",
+    "ulog_scaled_imu.h": "c",
+    "sdkconfig.h": "c",
+    "esp_netif.h": "c",
+    "esp_eth.h": "c",
+    "udp_tl.h": "c",
+    "timers.h": "c",
+    "tl_common.h": "c",
+    "flash_common.h": "c",
+    "semphr.h": "c",
+    "esp_timer_private.h": "c",
+    "esp_cpu.h": "c",
+    "ulog_altitude.h": "c",
+    "esp_err.h": "c",
+    "esp_timer.h": "c",
+    "gd5f2gq5ue.h": "c",
+    "lfs.h": "c",
+    "esp_compiler.h": "c",
+    "ulog_def.h": "c",
+    "stdint.h": "c",
+    "task_work.h": "c",
+    "sdmmc_cmd.h": "c",
+    "esp_system.h": "c",
+    "stdio.h": "c",
+    "vector": "c",
+    "xhash": "c",
+    "xstring": "c",
+    "mav.h": "c",
+    "lfs_def.h": "c",
+    "stddef.h": "c"
+  },
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "entity.name.function",
+        "settings": {
+          "foreground": "#F0E68C" // Narandžasta boja
+        }
+      }
+    ]
+  },
+  "C_Cpp.errorSquiggles": "enabled",
+  "C_Cpp.default.compilerPath": "C:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/binxtensa-esp32s3-elf-gcc.exe",
+  "idf.portWin": "COM19",
+  "C_Cpp.dimInactiveRegions": false,
+}

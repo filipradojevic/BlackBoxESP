@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+
+<!-- ******************************* -->
+<!--    LISUM MAVLINK DEFINITIONS    -->
+<!--    VERSION 1.0.0                -->
+<!-- ******************************* -->
+
+<mavlink>
+	<include>common.xml</include>
+
+	<enums>
+	<enum name="LISUM_SENSOR_AIRSPEED_FLAGS" bitmask="true">
+		<description>Airspeed sensor flags</description>
+		<entry value="0" name="LISUM_SENSOR_AIRSPEED_UNHEALTHY">
+			<description>Airspeed sensor is unhealthy</description>
+		</entry>
+		<entry value="1" name="LISUM_SENSOR_AIRSPEED_USING">
+			<description>True if the data from this sensor is being actively used by the flight controller for guidance, navigation or control.</description>
+		</entry>
+	</enum>
+
+	<enum name="LISUM_GNSS_RECV">
+		<description>These values determine the source of GNSS data.</description>
+		<entry value="0" name="LISUM_GNSS_RECV_INTERNAL">
+			<description>Internal GNSS.</description>
+		</entry>
+		<entry value="1" name="LISUM_GNSS_RECV_EXTERNAL">
+			<description>External GNSS.</description>
+		</entry>
+	</enum>
+
+	<enum name="LISUM_GNSS_RECV_FIX_TYPE">
+		<description>These values determine GNSS fix type.</description>
+		<entry value="0" name="LISUM_GNSS_RECV_FIX_TYPE_NO_FIX">
+			<description>Fix is Invalid.</description>
+		</entry>
+		<entry value="1" name="LISUM_GNSS_RECV_FIX_TYPE_DEAD_RECKON_ONLY">
+			<description>Fix is based on Dead Reckoning.</description>
+		</entry>
+		<entry value="2" name="LISUM_GNSS_RECV_FIX_TYPE_2D">
+			<description>Fix is calculated using 3 satellites.</description>
+		</entry>
+		<entry value="3" name="LISUM_GNSS_RECV_FIX_TYPE_3D">
+			<description>Fix is calculated using at least 4 satellites.</description>
+		</entry>
+		<entry value="4" name="LISUM_GNSS_RECV_FIX_TYPE_DEAD_RECKON">
+			<description>Fix is calculated using GNSS data and Dead Reckoning.</description>
+		</entry>
+		<entry value="5" name="LISUM_GNSS_RECV_FIX_TYPE_TIME">
+			<description>Time Fix</description>
+		</entry>
+	</enum>
+
+	<enum name="LISUM_GNSS_RECV_CARR_SOL">
+		<description>These values determine GNSS carrier phase range solution.</description>
+		<entry value="0" name="LISUM_GNSS_RECV_CARR_SOL_NONE">
+			<description>No carrier phase range solution.</description>
+		</entry>
+		<entry value="1" name="LISUM_GNSS_RECV_CARR_SOL_FLOAT">
+			<description>Carrier phase range solution with floating ambiguities.</description>
+		</entry>
+		<entry value="2" name="LISUM_GNSS_RECV_CARR_SOL_FIXED">
+			<description>Carrier phase range solution with fixed ambiguities.</description>
+		</entry>
+	</enum>
+
+	<enum name="LISUM_HORNET_HOMING_METHOD">
+		<description>These values determine Hornet X01 homing method.</description>
+		<entry value="0" name="LISUM_HORNET_HOMING_METHOD_ACT_POS">
+			<description>Homing using actual position.</description>
+		</entry>
+		<entry value="1" name="LISUM_HORNET_HOMING_METHOD_CURR_THR">
+			<description>Homing using current threshold.</description>
+		</entry>
+	</enum>
+
+	<enum name="LISUM_HORNET_MODE">
+		<description>These values determine Hornet X01 Mode.</description>
+		<entry value="0" name="LISUM_HORNET_MODE_OPERATIONAL">
+			<description>Operational Mode.</description>
+		</entry>
+		<entry value="1" name="LISUM_HORNET_MODE_MAINTENANCE">
+			<description>Maintenance Mode.</description>
+		</entry>
+	</enum>
+
+	<enum name="MAV_CMD">
+		<!-- Manual control/Hornet messages (59328 - 59335) -->
+		<entry value="59328" name="MAV_CMD_HORNET_HOMING" hasLocation="false" isDestination="false">
+			<description>Perform Hornet X01 Homing.</description>
+			<param index="1" label="Method" enum="LISUM_HORNET_HOMING_METHOD">Method.</param>
+			<param index="2">Empty.</param>
+			<param index="3">Empty.</param>
+			<param index="4">Empty.</param>
+			<param index="5">Empty.</param>
+			<param index="6">Empty.</param>
+			<param index="7">Empty.</param>
+		</entry>
+
+		<entry value="59329" name="MAV_CMD_HORNET_ARM_DISARM" hasLocation="false" isDestination="false">
+			<description>Arm/Disarm Hornet X01.</description>
+			<param index="1" label="Arm" minValue="0" maxValue="1" increment="1">0: disarm, 1: arm</param>
+			<param index="2">Empty.</param>
+			<param index="3">Empty.</param>
+			<param index="4">Empty.</param>
+			<param index="5">Empty.</param>
+			<param index="6">Empty.</param>
+			<param index="7">Empty.</param>
+		</entry>
+
+		<entry value="59330" name="MAV_CMD_HORNET_INIT" hasLocation="false" isDestination="false">
+			<description>Initialize Hornet X01.</description>
+			<param index="1">Empty.</param>
+			<param index="2">Empty.</param>
+			<param index="3">Empty.</param>
+			<param index="4">Empty.</param>
+			<param index="5">Empty.</param>
+			<param index="6">Empty.</param>
+			<param index="7">Empty.</param>
+		</entry>
+
+		<entry value="59331" name="MAV_CMD_HORNET_FAULT_RESET" hasLocation="false" isDestination="false">
+			<description>Reset Hornet X01 Faults.</description>
+			<param index="1">Empty.</param>
+			<param index="2">Empty.</param>
+			<param index="3">Empty.</param>
+			<param index="4">Empty.</param>
+			<param index="5">Empty.</param>
+			<param index="6">Empty.</param>
+			<param index="7">Empty.</param>
+		</entry>
+
+		<entry value="59332" name="MAV_CMD_HORNET_SWEEP" hasLocation="false" isDestination="false">
+			<description>Execute Hornet X01 actuator sweep.</description>
+			<param index="1">Empty.</param>
+			<param index="2">Empty.</param>
+			<param index="3">Empty.</param>
+			<param index="4">Empty.</param>
+			<param index="5">Empty.</param>
+			<param index="6">Empty.</param>
+			<param index="7">Empty.</param>
+		</entry>
+	</enum>
+
+	</enums>
+
+	<messages>
+
+	<!-- ***************************** -->
+	<!-- ***************************** -->
+	<!-- ***************************** -->
+	<!-- Core messages (58880 - 58943) -->
+	<!-- ***************************** -->
+	<!-- ***************************** -->
+	<!-- ***************************** -->
+
+	<!-- ********************************************* -->
+	<!-- ********************************************* -->
+	<!-- ********************************************* -->
+	<!-- Device configuration messages (58944 - 59007) -->
+	<!-- ********************************************* -->
+	<!-- ********************************************* -->
+	<!-- ********************************************* -->
+
+	<!-- **************************** -->
+	<!-- **************************** -->
+	<!-- **************************** -->
+	<!-- Log messages (59008 - 59071) -->
+	<!-- **************************** -->
+	<!-- **************************** -->
+	<!-- **************************** -->
+
+	<!-- ****************************** -->
+	<!-- ****************************** -->
+	<!-- ****************************** -->
+	<!-- Power messages (59072 - 59135) -->
+	<!-- ****************************** -->
+	<!-- ****************************** -->
+	<!-- ****************************** -->
+
+	<!-- ************************************ -->
+	<!-- Power/Motor messages (59072 - 59079) -->
+	<!-- ************************************ -->
+
+	<!-- Motor data -->
+	<message id="59072" name="LISUM_POWER_MOTOR_DATA">
+		<description>Motor data - To be removed!</description>
+		<field type="float" name="time" units="s">Engine time since turning on</field>
+		<field type="float" name="w_gg" units="Hz">Angular Rate of Gas Generator</field>
+		<field type="float" name="w_gg_N" units="Hz">Nominal Rate Velocity of Gas generator</field>
+		<field type="float" name="w_ft" units="Hz">Angular Rate of Free Turbine</field>
+		<field type="float" name="w_ft_N" units="Hz">Nominal Rate Velocity of Free Turbine</field>
+		<field type="float" name="fuel_flow">Fuel Flow</field>
+		<field type="float" name="oil_flow_arm">Oil Flow - arm</field>
+		<field type="float" name="oil_flow_reducer">Oil Flow - reducer</field>
+		<field type="float" name="battery_volt">Battery voltage</field>
+		<field type="float" name="temp_front_bearing">Temperature of front bearing</field>
+		<field type="float" name="temp_rear_bearing">Temperature of rear bearing</field>
+		<field type="float" name="temp_elastic_bearing">Temperature of elastic bearing</field>
+		<field type="float" name="temp_rigid_bearing">Temperature of rigid bearing</field>
+		<field type="float" name="temp_input_oil">Temperature of input oil</field>
+		<field type="float" name="temp_arm_oil">Temperature of oil - arm</field>
+		<field type="float" name="temp_reducer_oil">Temperature of oil - reducer</field>
+		<field type="float" name="temp_exhaust_fume">Temperature of exhaust fumes</field>
+		<field type="float" name="press_arm_oil">Oil pressure - arm</field>
+		<field type="float" name="fuel_level">Fuel level</field>
+		<field type="float" name="oil_level_bearing">Oil level - bearing</field>
+		<field type="float" name="oil_level_reducer">Oil level - reducer</field>
+		<field type="float" name="PWM_fuel_pump">Fuel pump PWM</field>
+		<field type="float" name="current_fuel_pump">Fuel pump current</field>
+		<field type="float" name="PWM_oil_pump">Oil pump PWM</field>
+		<field type="float" name="current_oil_pump">Oil pump current</field>
+		<field type="float" name="PWM_oil_suction_pump_reducer">Suction pump (reducer) PWM</field>
+		<field type="float" name="PWM_oil_suction_pump_arm">Suction pump (arm) PWM</field>
+		<field type="float" name="PWM_oil_pressure_pump">Oil pressure pump PWM</field>
+		<field type="uint8_t" name="activate">Activate Struct</field>
+		<field type="uint16_t" name="turn_on">Turn ON Struct</field>
+		<field type="uint8_t" name="valve_state">Valve State</field>
+		<field type="uint8_t" name="pressure_state">Pressure State</field>
+		<field type="uint32_t" name="warning">Warning Struct</field>
+		<field type="uint32_t" name="error">Error Struct</field>
+		<field type="uint8_t[8]" name="EvnC">EvnC Struct</field>
+		<field type="uint8_t[8]" name="res">Reserved for future</field>
+	</message>
+
+	<message id="59073" name="LISUM_POWER_MOTOR_SCALED_DATA">
+		<description>Motor scaled data.</description>
+		<field type="float" name="time" units="s">Engine time since turning on</field>
+		<field type="float" name="w_gg" units="Hz">Angular Rate of Gas Generator</field>
+		<field type="float" name="w_gg_N" units="Hz">Nominal Rate Velocity of Gas generator</field>
+		<field type="float" name="w_ft" units="Hz">Angular Rate of Free Turbine</field>
+		<field type="float" name="w_ft_N" units="Hz">Nominal Rate Velocity of Free Turbine</field>
+		<field type="uint16_t" name="fuel_flow">Fuel Flow [cg/s]</field>
+		<field type="uint16_t" name="oil_flow_arm">Oil Flow - arm [cg/s]</field>
+		<field type="uint16_t" name="oil_flow_reducer">Oil Flow - reducer [cg/s]</field>
+		<field type="uint16_t" name="battery_volt" units="mV">Battery voltage</field>
+		<field type="int16_t" name="temp_front_bearing">Temperature of front bearing [ddegC]</field>
+		<field type="int16_t" name="temp_rear_bearing">Temperature of rear bearing [ddegC]</field>
+		<field type="int16_t" name="temp_elastic_bearing">Temperature of elastic bearing [ddegC]</field>
+		<field type="int16_t" name="temp_rigid_bearing">Temperature of rigid bearing [ddegC]</field>
+		<field type="int16_t" name="temp_input_oil">Temperature of input oil [ddegC]</field>
+		<field type="int16_t" name="temp_arm_oil">Temperature of oil - arm [ddegC]</field>
+		<field type="int16_t" name="temp_reducer_oil">Temperature of oil - reducer [ddegC]</field>
+		<field type="int16_t" name="temp_exhaust_fume">Temperature of exhaust fumes [ddegC]</field>
+		<field type="int16_t" name="press_arm_oil" units="mbar">Oil pressure - arm</field>
+		<field type="int16_t" name="fuel_level">Fuel level [cl]</field>
+		<field type="uint16_t" name="oil_level_bearing" units="c%">Oil level - bearing</field>
+		<field type="uint16_t" name="oil_level_reducer" units="c%">Oil level - reducer</field>
+		<field type="uint16_t" name="PWM_fuel_pump" units="c%">Fuel pump PWM</field>
+		<field type="uint16_t" name="current_fuel_pump" units="cA">Fuel pump current</field>
+		<field type="uint16_t" name="PWM_oil_pump" units="c%">Oil pump PWM</field>
+		<field type="uint16_t" name="current_oil_pump" units="cA">Oil pump current</field>
+		<field type="uint16_t" name="PWM_oil_suction_pump_reducer" units="c%">Suction pump (reducer) PWM</field>
+		<field type="uint16_t" name="PWM_oil_suction_pump_arm" units="c%">Suction pump (arm) PWM</field>
+		<field type="uint16_t" name="PWM_oil_pressure_pump" units="c%">Oil pressure pump PWM</field>
+		<field type="uint8_t" name="activate">Activate Struct</field>
+		<field type="uint16_t" name="turn_on">Turn ON Struct</field>
+		<field type="uint8_t" name="valve_state">Valve State</field>
+		<field type="uint8_t" name="pressure_state">Pressure State</field>
+		<field type="uint32_t" name="warning">Warning Struct</field>
+		<field type="uint32_t" name="error">Error Struct</field>
+		<field type="uint8_t[8]" name="EvnC">EvnC Struct</field>
+		<field type="uint8_t[8]" name="res">Reserved for future</field>
+	</message>
+
+	<!-- ************************************* -->
+	<!-- Power/Hornet messages (59080 - 59087) -->
+	<!-- ************************************* -->
+
+	<!-- Hornet actuator data -->
+	<message id="59080" name="LISUM_POWER_HORNET_ACT_DATA">
+		<description>Hornet actuator data.</description>
+		<field type="float" name="pos_act1" units="mm">Position of Actuator 1</field>
+		<field type="float" name="abs_pos_act1" units="mm">Absolute Position of Actuator 1</field>
+		<field type="float" name="vel_act1" units="mm/s">Velocity of Actuator 1</field>
+		<field type="float" name="curr_act1" units="A">Current of Actuator 1</field>
+		<field type="uint16_t" name="sw_act1">Statusword of Actuator 1</field>
+		<field type="uint16_t" name="abs_enc_sw_act1">Absolute encoder statusword of Actuator 1</field>
+		<field type="float" name="pos_act2" units="mm">Position of Actuator 2</field>
+		<field type="float" name="abs_pos_act2" units="mm">Absolute Position of Actuator 2</field>
+		<field type="float" name="vel_act2" units="mm/s">Velocity of Actuator 2</field>
+		<field type="float" name="curr_act2" units="A">Current of Actuator 2</field>
+		<field type="uint16_t" name="sw_act2">Statusword of Actuator 2</field>
+		<field type="uint16_t" name="abs_enc_sw_act2">Absolute encoder statusword of Actuator 2</field>
+		<field type="float" name="pos_act3" units="mm">Position of Actuator 3</field>
+		<field type="float" name="abs_pos_act3" units="mm">Absolute Position of Actuator 3</field>
+		<field type="float" name="vel_act3" units="mm/s">Velocity of Actuator 3</field>
+		<field type="float" name="curr_act3" units="A">Current of Actuator 3</field>
+		<field type="uint16_t" name="sw_act3">Statusword of Actuator 3</field>
+		<field type="uint16_t" name="abs_enc_sw_act3">Absolute encoder statusword of Actuator 3</field>
+		<field type="float" name="pos_act4" units="mm">Position of Actuator 4</field>
+		<field type="float" name="abs_pos_act4" units="mm">Absolute Position of Actuator 4</field>
+		<field type="float" name="vel_act4" units="mm/s">Velocity of Actuator 4</field>
+		<field type="float" name="curr_act4" units="A">Current of Actuator 4</field>
+		<field type="uint16_t" name="sw_act4">Statusword of Actuator 4</field>
+		<field type="uint16_t" name="abs_enc_sw_act4">Absolute encoder statusword of Actuator 4</field>
+	</message>
+
+	<!-- ************************************************* -->
+	<!-- ************************************************* -->
+	<!-- ************************************************* -->
+	<!-- Networking and telemetry messages (59136 - 59199) -->
+	<!-- ************************************************* -->
+	<!-- ************************************************* -->
+	<!-- ************************************************* -->
+
+	<!-- ******************************* -->
+	<!-- ******************************* -->
+	<!-- ******************************* -->
+	<!-- Sensor messages (59200 - 59263) -->
+	<!-- ******************************* -->
+	<!-- ******************************* -->
+	<!-- ******************************* -->
+
+	<!-- Airspeed sensor data -->
+	<message id="59200" name="LISUM_SENSOR_AIRSPEED_DATA">
+		<description>Airspeed information from a sensor.</description>
+		<field type="uint8_t" name="id" instance="true">Sensor ID.</field>
+		<field type="float" name="airspeed" units="m/s">Calibrated airspeed (CAS).</field>
+		<field type="int16_t" name="temperature" units="cdegC">Temperature. INT16_MAX for value unknown/not supplied.</field>
+		<field type="float" name="raw_press" units="hPa">Raw differential pressure. NaN for value unknown/not supplied.</field>
+		<field type="uint8_t" name="flags" enum="LISUM_SENSOR_AIRSPEED_FLAGS">Airspeed sensor flags.</field>
+	</message>
+
+	<!-- ***************************** -->
+	<!-- ***************************** -->
+	<!-- ***************************** -->
+	<!-- GNSS messages (59264 - 59327) -->
+	<!-- ***************************** -->
+	<!-- ***************************** -->
+	<!-- ***************************** -->
+
+	<!-- GNSS receiver data -->
+	<message id="59264" name="LISUM_GNSS_RECV_DATA">
+		<description>GNSS receiver data.</description>
+		<field type="uint8_t" name="dev_id" enum="LISUM_GNSS_RECV">Index of receiver</field>
+		<field type="double" name="lon" units="deg">Longitude</field>
+		<field type="double" name="lat" units="deg">Latitude</field>
+		<field type="float" name="alt" units="m">Altitude</field>
+		<field type="float" name="head" units="deg">Heading</field>
+		<field type="float" name="head_rtk" units="deg">RTK Heading</field>
+		<field type="float" name="vel_ne" units="m/s">Planar velocity</field>
+		<field type="float" name="vel_d" units="m/s">Vertical velocity</field>
+		<field type="uint8_t" name="fix_type" enum="LISUM_GNSS_RECV_FIX_TYPE">Fix Type Flag</field>
+		<field type="uint8_t" name="carr_sol" enum="LISUM_GNSS_RECV_CARR_SOL">Carrier phase solution type</field>
+		<field type="uint8_t" name="rtk_head_valid">RTK heading validity flag</field>
+		<field type="uint8_t" name="sv_num">Number of satellites</field>
+	</message>
+
+	<!-- *************************************** -->
+	<!-- *************************************** -->
+	<!-- *************************************** -->
+	<!-- Manual control messages (59328 - 59391) -->
+	<!-- *************************************** -->
+	<!-- *************************************** -->
+	<!-- *************************************** -->
+
+	<!-- ********************************************** -->
+	<!-- Manual control/Hornet messages (59328 - 59335) -->
+	<!-- ********************************************** -->
+
+	<!-- Hornet manual control -->
+	<message id="59328" name="LISUM_MANUAL_CTRL_HORNET">
+		<description>Hornet manual control.</description>
+		<field type="uint8_t" name="mode" enum="LISUM_HORNET_MODE">Operational Mode</field>
+		<field type="float" name="pos_sp_act1" units="mm">Position setpoint Actuator 1</field>
+		<field type="float" name="pos_sp_act2" units="mm">Position setpoint Actuator 2</field>
+		<field type="float" name="pos_sp_act3" units="mm">Position setpoint Actuator 3</field>
+		<field type="float" name="pos_sp_act4" units="mm">Position setpoint Actuator 4</field>
+	</message>
+
+	<!-- ********************************** -->
+	<!-- ********************************** -->
+	<!-- ********************************** -->
+	<!-- Autopilot messages (59392 - 59455) -->
+	<!-- ********************************** -->
+	<!-- ********************************** -->
+	<!-- ********************************** -->
+
+	<!-- ******************************* -->
+	<!-- ******************************* -->
+	<!-- ******************************* -->
+	<!-- Camera messages (59456 - 59519) -->
+	<!-- ******************************* -->
+	<!-- ******************************* -->
+	<!-- ******************************* -->
+
+	</messages>
+
+</mavlink>

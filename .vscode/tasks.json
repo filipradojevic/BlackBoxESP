@@ -1,0 +1,98 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "preRun",
+            "type": "shell",
+            "windows": {
+                "command": "cmd.exe",
+                "args": [
+                    "/c",
+                    "C:\\Espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20250707\\openocd-esp32\\bin\\openocd.exe -s C:\\Espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20250707\\openocd-esp32\\share\\openocd\\scripts -f board/esp32s3-builtin.cfg"
+                ]
+            }
+        },
+        {
+            "label": "Build ESP32 Project",
+            "type": "shell",
+            "windows": {
+                "command": "cmd.exe",
+                "args": [
+                    "/c",
+                    "call C:\\Espressif\\frameworks\\esp-idf-v5.5.1\\export.bat && idf.py build"
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Flash ESP32 Project",
+            "type": "shell",
+            "windows": {
+                "command": "cmd.exe",
+                "args": [
+                    "/c",
+                    "call C:\\Espressif\\frameworks\\esp-idf-v5.5.1\\export.bat && idf.py -p COM11 flash"
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Full Clean + Build ESP32 Project",
+            "type": "shell",
+            "windows": {
+                "command": "cmd.exe",
+                "args": [
+                    "/c",
+                    "call C:\\Espressif\\frameworks\\esp-idf-v5.5.1\\export.bat && idf.py fullclean && idf.py build"
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Run menuconfig",
+            "type": "shell",
+            "windows": {
+                "command": "cmd.exe",
+                "args": [
+                    "/c",
+                    "call C:\\Espressif\\frameworks\\esp-idf-v5.5.1\\export.bat && idf.py menuconfig"
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "OpenOCD ESP32-S3",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/start_openocd.bat",
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "cppdbg",
+                "pattern": [],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "Info : Listening on port 6666",
+                    "endsPattern": "Info : \\[esp32s3.cpu0\\] Target halted"
+                }
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            }
+        }
+    ]
+}

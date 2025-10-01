@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "ESP-IDF",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Espressif/frameworks/esp-idf-v5.3/components/**"
+            ],
+            "defines": [
+                "ESP_PLATFORM",
+                "CONFIG_FREERTOS_HZ=100"
+            ],
+            "compilerPath": "C:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/binxtensa-esp32s3-elf-gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}

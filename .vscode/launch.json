@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "preLaunchTask": "preRun",
+      "name": "Debug ESP32-S3",
+      "type": "cppdbg",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/build",
+      "program": "${workspaceFolder}/build/BlackBoxESP.elf",
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:/Espressif/tools/xtensa-esp-elf-gdb/16.2_20250324/xtensa-esp-elf-gdb/bin/xtensa-esp32s3-elf-gdb.exe",
+      "miDebuggerServerAddress": "localhost:3333",
+      "setupCommands": [
+        {
+          "text": "set remote hardware-watchpoint-limit 2"
+        },
+        {
+          "text": "set confirm off"
+        },
+        {
+          "text": "flushregs"
+        },
+        {
+          "text": "break app_main"
+        }
+      ],
+      "stopAtEntry": false,
+      "logging": {
+        "engineLogging": true,
+        "trace": true,
+        "traceResponse": true
+      }
+    }
+  ]
+}

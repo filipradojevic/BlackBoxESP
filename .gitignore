@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# C build
+*.o
+*.elf
+*.bin
+*.hex
+build/
+src/app/main.h
+
+# Logs
+*.log

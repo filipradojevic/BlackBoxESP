@@ -1,0 +1,19 @@
+#pragma once
+
+/* Variables in flight_custom_version: */
+#define BUILD_UNIX_TIMESTAMP @BUILD_UNIX_TIMESTAMP@
+
+/* HASH of our program on git */
+#define GIT_COMMIT_HASH "@GIT_HASH@"
+
+/* TAG of our program on git */
+#define FLIGHT_CUSTOM_VERSION "@GIT_TAG@"
+
+/* Verison of our program on git */
+#define FLIGHT_CUSTOM_HASH "@GIT_HASH@"
+
+/* Verison of our LFS on git */
+#define MIDDLEWARE_CUSTOM_HASH "@LFS_VERSION_BUILD@"
+
+/* Verison of our FreeRTOS on git */
+#define OS_CUSTOM_HASH "@OS_VERSION@"
