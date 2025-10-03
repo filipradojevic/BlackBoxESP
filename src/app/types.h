@@ -17,7 +17,7 @@ extern "C" {
  * Includes
  ******************************************************************************/
 // #include "lfs.h"
-#include "esp_timer.h"
+// #include "esp_timer.h"
 
 /*******************************************************************************
  * Defines
@@ -46,7 +46,7 @@ extern "C" {
 /* Blinky Led */
 
 #define BLINKY_PERIOD_MS 500	 /**< LED green blinky period [ms] */
-#define LED_RGB_GPIO GPIO_NUM_21 /**< GPIO number for blinky LED */
+#define LED_RGB_GPIO GPIO_NUM_2 /**< GPIO number for blinky LED */
 
 /* Flash configuration */
 
@@ -105,10 +105,10 @@ extern "C" {
  * API
  ******************************************************************************/
 
-static inline uint64_t HAL_GetTimeUS(void)
-{
-	return (uint64_t)esp_timer_get_time();
-}
+// static inline uint64_t HAL_GetTimeUS(void)
+// {
+// 	return (uint64_t)esp_timer_get_time();
+// }
 
 #ifdef __cplusplus
 }

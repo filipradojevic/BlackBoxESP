@@ -9,7 +9,7 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-
+#include <stdio.h> 
 #include <stdint.h>
 #include <string.h>
 
@@ -152,15 +152,15 @@ static int udp_icmp(udp_t *udp, uint16_t size);
  * Code
  ******************************************************************************/
 
-void udp_init(udp_t *udp, const uint8_t *mac, const uint8_t *ip, udp_phy_t *phy)
-{
-	memcpy(udp->mac, mac, sizeof(udp->mac));
-	memcpy(udp->ip, ip, sizeof(udp->ip));
+// void udp_init(udp_t *udp, const uint8_t *mac, const uint8_t *ip, udp_phy_t *phy)
+// {
+// 	memcpy(udp->mac, mac, sizeof(udp->mac));
+// 	memcpy(udp->ip, ip, sizeof(udp->ip));
 
-	udp->phy = phy;
-	udp->arptab.len = 0;
-	udp->track_count = 0;
-}
+// 	udp->phy = phy;
+// 	udp->arptab.len = 0;
+// 	udp->track_count = 0;
+// }
 
 int udp_arptab_add(udp_t *udp, const uint8_t *mac, const uint8_t *ip)
 {
@@ -209,6 +209,11 @@ void udp_process(udp_t *udp)
 	if (packet_size == 0)
 		return;
 
+	printf("Received packet (%d bytes): ", packet_size);
+		for (int i = 0; i < packet_size; i++) {
+			printf("%02X ", udp->buffer[i]); // ispis u heksadecimalnom formatu
+		}
+	printf("\n");
 	/* check if packet is ICMP, if so, handle it internally */
 	if (udp_icmp(udp, packet_size) != -1)
 		return;
@@ -247,31 +252,31 @@ void udp_process(udp_t *udp)
 	}
 }
 
-uint16_t udp_send(udp_t *udp, const uint8_t *ip, uint16_t port,
-				  const uint8_t *data, uint16_t size)
-{
-	udp_track_t tmp_track;
-	const uint8_t *mac;
+// uint16_t udp_send(udp_t *udp, const uint8_t *ip, uint16_t port,
+// 				  const uint8_t *data, uint16_t size)
+// {
+// 	udp_track_t tmp_track;
+// 	const uint8_t *mac;
 
-	/* drop if size of packet is too large */
-	if (udp_pack_size(size) > UDP_ETH_MAX)
-		return 0;
+// 	/* drop if size of packet is too large */
+// 	if (udp_pack_size(size) > UDP_ETH_MAX)
+// 		return 0;
 
-	/* drop if MAC address cannot be resolved */
-	mac = udp_resolve(udp, ip);
-	if (mac == NULL)
-		return 0;
+// 	/* drop if MAC address cannot be resolved */
+// 	mac = udp_resolve(udp, ip);
+// 	if (mac == NULL)
+// 		return 0;
 
-	memcpy(&tmp_track.mac, mac, 6);
-	memcpy(&tmp_track.ip, ip, 4);
-	tmp_track.port = port;
+// 	memcpy(&tmp_track.mac, mac, 6);
+// 	memcpy(&tmp_track.ip, ip, 4);
+// 	tmp_track.port = port;
 
-	memcpy(udp->buffer + UDP_PREFIX_SIZE, data, size);
+// 	memcpy(udp->buffer + UDP_PREFIX_SIZE, data, size);
 
-	udp_pack(udp, &tmp_track, &size);
+// 	udp_pack(udp, &tmp_track, &size);
 
-	return udp->phy->send(udp->phy, udp->buffer, size);
-}
+// 	return udp->phy->send(udp->phy, udp->buffer, size);
+// }
 
 inline uint16_t udp_reorder_16(uint16_t value)
 {

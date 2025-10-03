@@ -65,7 +65,17 @@
     "xstring": "c",
     "mav.h": "c",
     "lfs_def.h": "c",
-    "stddef.h": "c"
+    "stddef.h": "c",
+    "esp_eth_driver.h": "c",
+    "esp_eth_netif_glue.h": "c",
+    "sdspi_host.h": "c",
+    "ip_addr.h": "c",
+    "esp_event.h": "c",
+    "esp_eth_mac_spi.h": "c",
+    "esp_eth_com.h": "c",
+    "esp_eth_mac_esp.h": "c",
+    "esp_eth_mac_openeth.h": "c",
+    "esp_eth_phy.h": "c"
   },
   "editor.tokenColorCustomizations": {
     "textMateRules": [
